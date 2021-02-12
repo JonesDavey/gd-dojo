@@ -26,27 +26,31 @@ func getIndex(target int, list []int, start int, end int) int {
 	}
 }
 
-func testChop(target int, expected int) {
-	testArray := []int{1, 3, 4, 7, 13, 14, 15, 24}
-
-	index := binarySearch(target, testArray[:])
-
-	if index == expected {
-		fmt.Println("Test passed.")
-	} else {
-		fmt.Printf("Test failed. Function returned %d, expected %d\n", index, expected)
-	}
+func applyTest(expected, searchValue int, inputCollection []int) bool {
+	actual := binarySearch(searchValue, inputCollection)
+	return expected == actual
 }
 
 func main() {
-	// Test edges
-	testChop(1, 0)
-	testChop(24, 7)
+	fmt.Println("test case: 0", applyTest(-1, 3, []int{}))
+	fmt.Println("test case: 1", applyTest(-1, 3, []int{1}))
+	fmt.Println("test case: 2", applyTest(0, 1, []int{1}))
 
-	// test a couple in the middle
-	testChop(7, 3)
-	testChop(14, 5)
+	fmt.Println("test case: 3", applyTest(0, 1, []int{1, 3, 5}))
+	fmt.Println("test case: 4", applyTest(1, 3, []int{1, 3, 5}))
+	fmt.Println("test case: 5", applyTest(2, 5, []int{1, 3, 5}))
+	fmt.Println("test case: 6", applyTest(-1, 0, []int{1, 3, 5}))
+	fmt.Println("test case: 7", applyTest(-1, 2, []int{1, 3, 5}))
+	fmt.Println("test case: 8", applyTest(-1, 4, []int{1, 3, 5}))
+	fmt.Println("test case: 9", applyTest(-1, 6, []int{1, 3, 5}))
 
-	// Make sure it returns -1 if not in list
-	testChop(8, -1)
+	fmt.Println("test case 1: ", applyTest(0, 1, []int{1, 3, 5, 7}))
+	fmt.Println("test case 2: ", applyTest(1, 3, []int{1, 3, 5, 7}))
+	fmt.Println("test case 3: ", applyTest(2, 5, []int{1, 3, 5, 7}))
+	fmt.Println("test case 4: ", applyTest(3, 7, []int{1, 3, 5, 7}))
+	fmt.Println("test case 5: ", applyTest(-1, 0, []int{1, 3, 5, 7}))
+	fmt.Println("test case 6: ", applyTest(-1, 2, []int{1, 3, 5, 7}))
+	fmt.Println("test case 7: ", applyTest(-1, 4, []int{1, 3, 5, 7}))
+	fmt.Println("test case 9: ", applyTest(-1, 6, []int{1, 3, 5, 7}))
+	fmt.Println("test case 10: ", applyTest(-1, 8, []int{1, 3, 5, 7}))
 }
