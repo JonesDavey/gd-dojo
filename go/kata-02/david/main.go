@@ -8,11 +8,7 @@ func binarySearch(value int, collection []int) int {
    begin := 0
    end := len(collection)
 
-   for begin != end {
-      if begin >= end {
-         return -1
-      }
-
+   for begin < end {
       midpoint := (begin + end)/2
 
       if value < collection[midpoint] {
